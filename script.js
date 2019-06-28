@@ -5,6 +5,7 @@
 // - eventually: handle more than two numbers?
 
 const calculator = {
+
 	display: document.getElementById("display"),
 	buttons: document.getElementsByClassName("button"),
 	button0: document.getElementById("button0"),
@@ -25,7 +26,7 @@ const calculator = {
 	buttonEquals: document.getElementById("buttonEquals"),
 	numDisplayed: "",
 	instructions: [],
-	
+
 	main: function() {
 		for (let i = 0; i < calculator.buttons.length; i++) {
 			calculator.buttons[i].addEventListener("click", function() {
@@ -46,33 +47,33 @@ const calculator = {
 	handleMath: function(btn) {
 		// if number was entered, add it to display & number var
 		if (Number(btn) == btn) {
-			calculator.numDisplayed += btn;
-			console.log("numDisplayed is now: " + calculator.numDisplayed);
-			calculator.display.innerHTML = calculator.numDisplayed;
+			this.numDisplayed += btn;
+			console.log("numDisplayed is now: " + this.numDisplayed);
+			this.display.innerHTML = this.numDisplayed;
 		// if non-number was entered...
 		} else {
-			if (calculator.numDisplayed !== "") {
+			if (this.numDisplayed !== "") {
 	      	  // save current number to array
-	      	  console.log("Saving this number to array: " + calculator.numDisplayed);
-			  calculator.instructions.push(calculator.numDisplayed);
+	      	  console.log("Saving this number to array: " + this.numDisplayed);
+			  this.instructions.push(this.numDisplayed);
 	    	}
-			console.log("instructions is now: " + calculator.instructions);
+			console.log("instructions is now: " + this.instructions);
 			// add non-number to display
-			calculator.display.innerHTML = calculator.numDisplayed + btn;
+			this.display.innerHTML = this.numDisplayed + btn;
 			// reset number var to empty
-			calculator.numDisplayed = "";
+			this.numDisplayed = "";
 			// add non-number to array
-			console.log("Last item added to array was: " + calculator.instructions[calculator.instructions.length-1]);
-			if (calculator.isOperator(calculator.instructions[calculator.instructions.length-1])) {
+			console.log("Last item added to array was: " + this.instructions[this.instructions.length-1]);
+			if (this.isOperator(this.instructions[this.instructions.length-1])) {
 				console.log("Whoops, the previous button pressed was also an operator!");
-				calculator.instructions[calculator.instructions.length-1] = btn;
+				this.instructions[this.instructions.length-1] = btn;
 			} else {
 				console.log("Pushing operator!");
-				calculator.instructions.push(btn);
+				this.instructions.push(btn);
 			}
 			// if it was equals, run the equals function
-			if (calculator.instructions[calculator.instructions.length-1] === "=") {
-				calculator.handleEquals(calculator.instructions);
+			if (this.instructions[this.instructions.length-1] === "=") {
+				this.handleEquals(this.instructions);
 			}
 		}
 	}, // end of handleMath
@@ -120,7 +121,7 @@ const calculator = {
 		this.instructions = [];
 	} // end of handleEquals
 
-};
+}; // end of calculator object
 
 calculator.main();
 
