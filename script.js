@@ -25,6 +25,7 @@ const calculator = {
 	buttonEquals: document.getElementById("buttonEquals"),
 	numDisplayed: "",
 	instructions: [],
+	
 	main: function() {
 		for (let i = 0; i < calculator.buttons.length; i++) {
 			calculator.buttons[i].addEventListener("click", function() {
@@ -37,9 +38,11 @@ const calculator = {
 			});
 		}
 	}, // end of main
+
 	isOperator: function(btn) {
 		return btn === "+" || btn === "-" || btn === "*" || btn === "/";
 	}, // end of isOperator
+
 	handleMath: function(btn) {
 		// if number was entered, add it to display & number var
 		if (Number(btn) == btn) {
@@ -73,23 +76,29 @@ const calculator = {
 			}
 		}
 	}, // end of handleMath
+
 	handleClear: function() {
 		this.instructions = [];
 		this.numDisplayed = "";
 		this.display.innerHTML = 0;
 	}, // end of handleClear
+
 	addNums: function(a, b) {
 		return a + b;
 	}, // end of addNums
+
 	subtractNums: function(a, b) {
 		return a - b;
 	}, // end of subtractNums
+
 	multiplyNums: function(a, b) {
 		return a * b;
 	}, // end of multiplyNums
+
 	divideNums: function(a, b) {
 		return a / b;
 	}, // end of divideNums
+
 	handleEquals: function(arr) {
 		let num1 = Number(arr[0]);
 		let operation = arr[1];
@@ -110,6 +119,7 @@ const calculator = {
 		this.display.innerHTML = result;
 		this.instructions = [];
 	} // end of handleEquals
+
 };
 
 calculator.main();
