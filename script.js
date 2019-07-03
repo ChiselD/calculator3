@@ -1,8 +1,9 @@
 // TO DO:
-// - handle error: "+ 5 ="
-// - align numbers to the right on display
-// - display entire mathematical expression on screen at once? or not?
-// - eventually: handle more than two numbers?
+// handle error: "+ 5 ="
+// handle error: "8 ="
+// align numbers to the right on display
+// display entire mathematical expression on screen at once? or not?
+// eventually: handle more than two numbers?
 
 const calculator = {
 
