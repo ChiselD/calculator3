@@ -47,13 +47,13 @@ const calculator = {
 		// if number was entered, add it to display & number var
 		if (Number(btn) == btn) {
 			this.numDisplayed += btn;
-			console.log("numDisplayed is now: " + this.numDisplayed);
+			// console.log("numDisplayed is now: " + this.numDisplayed);
 			this.display.innerHTML = this.numDisplayed;
 		// if non-number was entered...
 		} else {
 			if (this.numDisplayed !== "") {
 	      	  // save current number to array
-	      	  console.log("Saving this number to array: " + this.numDisplayed);
+	      	  // console.log("Saving this number to array: " + this.numDisplayed);
 			  this.instructions.push(this.numDisplayed);
 	    	}
 			console.log("this.instructions is now: " + this.instructions);
@@ -62,7 +62,7 @@ const calculator = {
 			// reset number var to empty
 			this.numDisplayed = "";
 			// add non-number to array
-			console.log("Last item added to array was: " + this.instructions[this.instructions.length-1]);
+			// console.log("Last item added to array was: " + this.instructions[this.instructions.length-1]);
 			if (this.isOperator(this.instructions[this.instructions.length-1])) {
 				console.log("Whoops, the previous button pressed was also an operator!");
 				this.instructions[this.instructions.length-1] = btn;
@@ -78,8 +78,8 @@ const calculator = {
 	}, // end of handleMath
 
 	checkForMultipleNumbers: function(arr) {
-		// If there are multiple numbers, this function returns "mult"
-		// If there is only one number, this function returns that number
+		// If there are multiple numbers in the instructions array, this function returns "mult"
+		// If there is only one number in the instructions array, this function returns that number
 		let howManyNumbers = 0;
 		let onlyNumber = 0;
 		for (let i = 0; i < arr.length; i++) {
@@ -92,7 +92,7 @@ const calculator = {
 			}
 		}
 		return onlyNumber;
-	},
+	}, // end of checkForMultipleNumbers
 
 	handleClear: function() {
 		this.instructions = [];
@@ -117,7 +117,7 @@ const calculator = {
 	}, // end of divideNums
 
 	handleEquals: function(arr) {
-		// If the instructions array contains multiple numbers, calculate result normally
+		// If the instructions array contains multiple numbers, calculate result normally...
 		if (this.checkForMultipleNumbers(this.instructions) === "mult") {
 			let num1 = Number(arr[0]);
 			let operation = arr[1];
@@ -136,7 +136,7 @@ const calculator = {
 				result = this.divideNums(num1, num2);
 			}
 			this.display.innerHTML = result;
-		// Otherwise, display only the single number that was entered
+		// ...Otherwise, display only the single number that was entered
 		} else {
 			this.display.innerHTML = this.checkForMultipleNumbers(this.instructions);
 		}
