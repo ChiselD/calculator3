@@ -64,6 +64,7 @@ const calculator = {
 			// add non-number to array
 			// console.log("Last item added to instructions was: " + this.instructions[this.instructions.length-1]);
 			if (this.isOperator(this.instructions[this.instructions.length-1])) {
+				// If two operators are entered in a row, overwrite the first one with the second one
 				console.log("Whoops, the previous button pressed was also an operator!");
 				this.instructions[this.instructions.length-1] = btn;
 			} else {
