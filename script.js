@@ -52,8 +52,8 @@ const calculator = {
 		// if non-number was entered...
 		} else {
 			if (this.numDisplayed !== "") {
-	      	  // save current number to array
-	      	  // console.log("Saving this number to array: " + this.numDisplayed);
+	      	  // save current number to instructions array
+	      	  // console.log("Saving this number to instructions array: " + this.numDisplayed);
 			  this.instructions.push(this.numDisplayed);
 	    	}
 			console.log("this.instructions is now: " + this.instructions);
@@ -62,7 +62,7 @@ const calculator = {
 			// reset number var to empty
 			this.numDisplayed = "";
 			// add non-number to array
-			// console.log("Last item added to array was: " + this.instructions[this.instructions.length-1]);
+			// console.log("Last item added to instructions was: " + this.instructions[this.instructions.length-1]);
 			if (this.isOperator(this.instructions[this.instructions.length-1])) {
 				console.log("Whoops, the previous button pressed was also an operator!");
 				this.instructions[this.instructions.length-1] = btn;
