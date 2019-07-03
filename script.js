@@ -1,6 +1,4 @@
 // TO DO:
-// handle error: "+ 5 ="
-// handle error: "8 ="
 // align numbers to the right on display
 // display entire mathematical expression on screen at once? or not?
 // eventually: handle more than two numbers?
@@ -58,7 +56,7 @@ const calculator = {
 	      	  console.log("Saving this number to array: " + this.numDisplayed);
 			  this.instructions.push(this.numDisplayed);
 	    	}
-			console.log("instructions is now: " + this.instructions);
+			console.log("this.instructions is now: " + this.instructions);
 			// add non-number to display
 			this.display.innerHTML = this.numDisplayed + btn;
 			// reset number var to empty
@@ -78,6 +76,23 @@ const calculator = {
 			}
 		}
 	}, // end of handleMath
+
+	checkForMultipleNumbers: function(arr) {
+		// If there are multiple numbers, this function returns "mult"
+		// If there is only one number, this function returns that number
+		let howManyNumbers = 0;
+		let onlyNumber = 0;
+		for (let i = 0; i < arr.length; i++) {
+			if (Number(arr[i]) == arr[i]) {
+				onlyNumber = arr[i];
+				howManyNumbers++;
+			}
+			if (howManyNumbers >= 2) {
+				return "mult";
+			}
+		}
+		return onlyNumber;
+	},
 
 	handleClear: function() {
 		this.instructions = [];
@@ -102,23 +117,30 @@ const calculator = {
 	}, // end of divideNums
 
 	handleEquals: function(arr) {
-		let num1 = Number(arr[0]);
-		let operation = arr[1];
-		let num2 = Number(arr[2]);
-		let result = 0;
-		if (operation === "+") {
-			result = this.addNums(num1, num2);
+		// If the instructions array contains multiple numbers, calculate result normally
+		if (this.checkForMultipleNumbers(this.instructions) === "mult") {
+			let num1 = Number(arr[0]);
+			let operation = arr[1];
+			let num2 = Number(arr[2]);
+			let result = 0;
+			if (operation === "+") {
+				result = this.addNums(num1, num2);
+			}
+			if (operation === "-") {
+				result = this.subtractNums(num1, num2);
+			}
+			if (operation === "*") {
+				result = this.multiplyNums(num1, num2);
+			}
+			if (operation === "/") {
+				result = this.divideNums(num1, num2);
+			}
+			this.display.innerHTML = result;
+		// Otherwise, display only the single number that was entered
+		} else {
+			this.display.innerHTML = this.checkForMultipleNumbers(this.instructions);
 		}
-		if (operation === "-") {
-			result = this.subtractNums(num1, num2);
-		}
-		if (operation === "*") {
-			result = this.multiplyNums(num1, num2);
-		}
-		if (operation === "/") {
-			result = this.divideNums(num1, num2);
-		}
-		this.display.innerHTML = result;
+		// In either case, reset the instructions array to empty when done
 		this.instructions = [];
 	} // end of handleEquals
 
