@@ -3,6 +3,9 @@
 // display entire mathematical expression on screen at once? or not?
 // eventually: handle more than two numbers?
 
+document.documentElement.className = "js";
+document.getElementById("fouc").style.display="block";
+
 const calculator = {
 
 	display: document.getElementById("display"),
